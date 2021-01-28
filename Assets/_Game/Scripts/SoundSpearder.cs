@@ -31,8 +31,11 @@ public class SoundSpearder : MonoBehaviour
         var go = new GameObject();
         go.tag = "sound";
         go.transform.position = position;
+
         var collider = go.AddComponent<SphereCollider>();
         collider.radius = 0.001f;
+        collider.isTrigger = true;
+
         var sound = go.AddComponent<SoundSpearder>();
         sound.sphere = collider;
     }
