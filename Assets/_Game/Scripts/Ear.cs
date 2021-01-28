@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Eair : MonoBehaviour
+public class Ear : MonoBehaviour
 {
     public delegate void heardHandler(Collider other);
 
