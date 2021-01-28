@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoundSpearder : MonoBehaviour
+public class SoundSpreader : MonoBehaviour
 {
     public SphereCollider sphere;
     public float maxDistance = 0f;
@@ -36,7 +36,7 @@ public class SoundSpearder : MonoBehaviour
         collider.radius = 0.001f;
         collider.isTrigger = true;
 
-        var sound = go.AddComponent<SoundSpearder>();
+        var sound = go.AddComponent<SoundSpreader>();
         sound.sphere = collider;
     }
 
