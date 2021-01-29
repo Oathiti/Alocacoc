@@ -1,0 +1,28 @@
+Begin Object Class=/Script/Engine.Material Name="Mat_PolygonCity_FX_Steam"
+   Begin Object Class=/Script/Engine.MaterialExpressionParticleColor Name="MaterialExpressionParticleColor_0"
+   End Object
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="MaterialExpressionParticleColor_0"
+      MaterialExpressionEditorX=-272
+      MaterialExpressionEditorY=16
+      MaterialExpressionGuid=106DE8A14CE1C3A916848EBF771AE21D
+      Material=Material'"Mat_PolygonCity_FX_Steam"'
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   BaseColor=(Expression=MaterialExpressionParticleColor'"MaterialExpressionParticleColor_0"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   EmissiveColor=(Expression=MaterialExpressionParticleColor'"MaterialExpressionParticleColor_0"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Opacity=(Expression=MaterialExpressionParticleColor'"MaterialExpressionParticleColor_0"',OutputIndex=4,Mask=1,MaskA=1)
+   BlendMode=BLEND_Translucent
+   ShadingModel=MSM_Unlit
+   ShadingModels=(ShadingModelField=1)
+   bUsedWithParticleSprites=True
+   bUsedWithMeshParticles=True
+   Expressions(0)=MaterialExpressionParticleColor'"MaterialExpressionParticleColor_0"'
+   bCanMaskedBeAssumedOpaque=True
+   StateId=FB9B48794C815FE9F475B9A4976496DF
+   CachedExpressionData=(QualityLevelsUsed=(False,False,False,False))
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=6E70DC0B4D77C8D109583698621DD4DF
+End Object

@@ -1,0 +1,107 @@
+Begin Object Class=/Script/Engine.Material Name="Mat_PolygonCity_Texture_03_A"
+   Begin Object Class=/Script/Engine.MaterialExpressionConstant Name="MaterialExpressionConstant_39"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_11"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionMultiply Name="MaterialExpressionMultiply_4"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_0"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_12"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_13"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_43"
+   End Object
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_44"
+   End Object
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_39"
+      R=0.500000
+      MaterialExpressionEditorX=-112
+      MaterialExpressionEditorY=224
+      MaterialExpressionGuid=3FF668854FB9C8B2A645D4B95FCA7463
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_11"
+      A=(Expression=MaterialExpressionTextureSample'"Mat_PolygonCity_Texture_03_A:MaterialExpressionTextureSample_43"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      ConstB=1.500000
+      MaterialExpressionEditorX=-176
+      MaterialExpressionEditorY=48
+      MaterialExpressionGuid=1663E016465E7967A9CCBF9E8B7A8ABE
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_4"
+      A=(Expression=MaterialExpressionTextureSample'"Mat_PolygonCity_Texture_03_A:MaterialExpressionTextureSample_13"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      ConstB=5.000000
+      MaterialExpressionEditorX=-416
+      MaterialExpressionEditorY=304
+      MaterialExpressionGuid=6FF474B547E58FF6FB611F809821E164
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_0"
+      Texture=Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_03_A.T_PolygonCity_Texture_03_A"'
+      MaterialExpressionEditorX=-304
+      MaterialExpressionEditorY=-208
+      MaterialExpressionGuid=D4B55ACE494D548E3BE56A895685E500
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_12"
+      Texture=Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Normal_01.T_PolygonCity_Texture_Normal_01"'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=-176
+      MaterialExpressionEditorY=528
+      MaterialExpressionGuid=D4B55ACE494D548E3BE56A895685E500
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_13"
+      Texture=Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Emissive_01.T_PolygonCity_Emissive_01"'
+      MaterialExpressionEditorX=-592
+      MaterialExpressionEditorY=304
+      MaterialExpressionGuid=D4B55ACE494D548E3BE56A895685E500
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_43"
+      Texture=Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Metallic.T_PolygonCity_Texture_Metallic"'
+      SamplerType=SAMPLERTYPE_LinearColor
+      MaterialExpressionEditorX=-496
+      MaterialExpressionEditorY=16
+      MaterialExpressionGuid=9A95A1E347FE4CE4FA1971A481DA22BC
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_44"
+      Texture=Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Roughness.T_PolygonCity_Texture_Roughness"'
+      SamplerType=SAMPLERTYPE_LinearColor
+      MaterialExpressionEditorX=-208
+      MaterialExpressionEditorY=304
+      MaterialExpressionGuid=AEB310004A221A3FFC3C57B3C94F2DED
+      Material=Material'"Mat_PolygonCity_Texture_03_A"'
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   BaseColor=(Expression=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_0"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Metallic=(Expression=MaterialExpressionMultiply'"MaterialExpressionMultiply_11"')
+   Specular=(Expression=MaterialExpressionConstant'"MaterialExpressionConstant_39"')
+   Roughness=(Expression=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_44"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Normal=(Expression=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_12"',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   bUsedWithSkeletalMesh=True
+   bUsedWithStaticLighting=True
+   Expressions(0)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_0"'
+   Expressions(1)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_43"'
+   Expressions(2)=MaterialExpressionConstant'"MaterialExpressionConstant_39"'
+   Expressions(3)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_44"'
+   Expressions(4)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_12"'
+   Expressions(5)=MaterialExpressionTextureSample'"MaterialExpressionTextureSample_13"'
+   Expressions(6)=MaterialExpressionMultiply'"MaterialExpressionMultiply_4"'
+   Expressions(7)=MaterialExpressionMultiply'"MaterialExpressionMultiply_11"'
+   bCanMaskedBeAssumedOpaque=True
+   StateId=FFD8539B408F0106782145818534E4C7
+   CachedExpressionData=(ReferencedTextures=(Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_03_A.T_PolygonCity_Texture_03_A"',Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Metallic.T_PolygonCity_Texture_Metallic"',Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Roughness.T_PolygonCity_Texture_Roughness"',Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Texture_Normal_01.T_PolygonCity_Texture_Normal_01"',Texture2D'"/Game/PolygonCity/Textures/T_PolygonCity_Emissive_01.T_PolygonCity_Emissive_01"'),QualityLevelsUsed=(False,False,False,False))
+   ReferencedTextureGuids(0)=A8DE4CE849292B81282BF59ACA9D76BD
+   ReferencedTextureGuids(1)=E28B4548431B4A688D38C7A31F687D60
+   ReferencedTextureGuids(2)=3836DA70433E83C4CDF592A8D8BEAA0C
+   ReferencedTextureGuids(3)=BF4CDF0347647A2846D6AE89393F2D4F
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=791268144C2E74B71A81E9A441E072C5
+End Object
