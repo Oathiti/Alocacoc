@@ -50,13 +50,8 @@ public class Movement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, angle, 0);
             direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
 
-            if (direction.magnitude > .5f)
-            {
-
-            }
         }
-        print(direction.magnitude);
-        cSpeed = Vector3.Lerp(cSpeed, direction, .01f);
+        cSpeed = Vector3.Lerp(cSpeed, direction, direction.magnitude > spdWalk ? .5f : .05f);
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -66,7 +61,7 @@ public class Movement : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
-        characterController.Move((cSpeed + direction) * Time.deltaTime);
+        characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
         animate.SetFloat("speed", cSpeed.magnitude);
     }
     private void OnDrawGizmosSelected()
