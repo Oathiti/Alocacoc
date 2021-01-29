@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     public LayerMask layerMaskGround;
 
     float cVelocity = 0.1f;
-    int jumpCount = 1;
 
     const float jumpHeight = 1.0f;
     const float groundDistance = 0.01f;
