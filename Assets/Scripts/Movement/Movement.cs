@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
     Vector3 direction;
     [SerializeField]
     bool isGrounded;
+    float stay;
 
     void Update()
     {
@@ -51,6 +52,10 @@ public class Movement : MonoBehaviour
             direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
 
         }
+        else
+        {
+            stay += Time.deltaTime;
+        }
         cSpeed = Vector3.Lerp(cSpeed, direction, direction.magnitude > spdWalk ? .5f : .05f);
         if (isGrounded && playerVelocity.y < 0)
         {
@@ -63,6 +68,7 @@ public class Movement : MonoBehaviour
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
         animate.SetFloat("speed", cSpeed.magnitude);
+        //animate.SetFloat("idle", stay % (stay < 11 ? 10 : 60));
     }
     private void OnDrawGizmosSelected()
     {
@@ -87,4 +93,5 @@ public class Movement : MonoBehaviour
 
         body.AddForceAtPosition(pushDir * pushPower, transform.position);
     }
+
 }
