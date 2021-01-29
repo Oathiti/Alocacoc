@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
 
     public float spdWalk = 6f;
     public float spdRun = 10f;
-    public float spdRotation = 0.1f;
+    public float spdRotation = 0.01f;
     public LayerMask layerMaskGround;
     float cVelocity = 0.1f;
 
@@ -25,11 +25,12 @@ public class Movement : MonoBehaviour
     Vector3 direction;
     [SerializeField]
     bool isGrounded;
+    float stay;
 
     void Update()
     {
         isGrounded = Physics.CheckBox(transform.position, Vector3.one * groundDistance);
-        direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         if (direction.magnitude > 0)
         {
@@ -51,7 +52,11 @@ public class Movement : MonoBehaviour
             direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
 
         }
-        cSpeed = Vector3.Lerp(cSpeed, direction, direction.magnitude > spdWalk ? .5f : .05f);
+        else
+        {
+            stay += Time.deltaTime;
+        }
+        cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > direction.magnitude ? .01f : .05f);
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -62,7 +67,9 @@ public class Movement : MonoBehaviour
         }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
+        print(cSpeed.magnitude);
         animate.SetFloat("speed", cSpeed.magnitude);
+        //animate.SetFloat("idle", stay % (stay < 11 ? 10 : 60));
     }
     private void OnDrawGizmosSelected()
     {
@@ -87,4 +94,5 @@ public class Movement : MonoBehaviour
 
         body.AddForceAtPosition(pushDir * pushPower, transform.position);
     }
+
 }
