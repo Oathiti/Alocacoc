@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     public CharacterController characterController;
 
     public float spdWalk = 6f;
+    public float spdRun = 10f;
     public float spdRotation = 0.1f;
     public LayerMask layerMaskGround;
 
@@ -46,7 +47,7 @@ public class Movement : MonoBehaviour
             direction = Camera.main.transform.rotation * direction;
             direction.y = 0;
             transform.rotation = Quaternion.Euler(0, angle, 0);
-            direction *= spdWalk ;
+            direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
             //characterController.Move(direction * spdWalk * Time.deltaTime);
 
         }
@@ -64,5 +65,33 @@ public class Movement : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(transform.position, Vector3.one * groundDistance);
+    }
+
+    float pushPower = 1.0f;
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // no rigidbody
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
     }
 }
