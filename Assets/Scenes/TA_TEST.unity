@@ -1389,31 +1389,6 @@ MonoBehaviour:
   tintStrength: 1
   useExtinction: 0
   extinction: 0.75
---- !u!1 &650435323187634456 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7966748691816895076, guid: c4241ab6e7a14e243b220a885ccff19c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7460596251604218748}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &650435323187634457
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650435323187634456}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d4e455706a6671c42b67f425b16305ef, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7460596251604218748
 PrefabInstance:
   m_ObjectHideFlags: 0
