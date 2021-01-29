@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
         {
             stay += Time.deltaTime;
         }
-        cSpeed = Vector3.Lerp(cSpeed, direction, direction.magnitude > spdWalk ? .5f : .05f);
+        cSpeed = Vector3.Lerp(cSpeed, direction, /*direction.magnitude > spdWalk ? .01f :*/ .01f);
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
