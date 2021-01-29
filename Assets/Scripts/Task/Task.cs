@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Game/Task")]
 public class Task : ScriptableObject
 {
-    public string Description;
+    public string description;
 
     public bool finish;
 
@@ -13,7 +13,7 @@ public class Task : ScriptableObject
     {
         this.finish = value;
     }
-    
+
     void OnDisable()
     {
         #if UNITY_EDITOR
