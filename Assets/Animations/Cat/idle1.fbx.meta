@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: b7fe557d87f80ec4780540dac124d573
+guid: 7ebdd68a50f72f1419c258b90b45c035
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Idle2
+    second: Idle1
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle2
+      name: Idle1
       takeName: Take 001
       internalID: 0
       firstFrame: 1
-      lastFrame: 220
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
