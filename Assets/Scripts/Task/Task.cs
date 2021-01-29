@@ -9,9 +9,14 @@ public class Task : ScriptableObject
 
     public Task[] subTasks;
 
+    public delegate void TaskHandler(Task task);
+    public TaskHandler OnFinish;
+
     public void SetFinish(bool value = true)
     {
         this.finish = value;
+        if (OnFinish != null)
+            OnFinish(this);
     }
 
     void OnDisable()
