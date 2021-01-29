@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SetTaskFinish : MonoBehaviour
+public class TaskFinisher : MonoBehaviour
 {
 
     public Task[] tasks;
