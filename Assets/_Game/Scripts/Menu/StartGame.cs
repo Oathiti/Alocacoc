@@ -4,11 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
+    public GameObject loadingScreen;
 
     public GameObject catCamera;
 
     public GameObject fadeIn;
-    
+
     public GameObject mainMenu;
 
     public string playScene;
@@ -25,7 +26,12 @@ public class StartGame : MonoBehaviour
     protected IEnumerator GoToPlayScene()
     {
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(playScene);
-        yield return null;
+        AsyncOperation operation = SceneManager.LoadSceneAsync(playScene);
+
+        loadingScreen.SetActive(true);
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
     }
 }
