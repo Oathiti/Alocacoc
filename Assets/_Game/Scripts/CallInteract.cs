@@ -28,8 +28,12 @@ public class CallInteract : MonoBehaviour
         RaycastHit ray;
         if (Physics.Linecast(transform.position + (Vector3.up * 0.3f), transform.position + (transform.rotation * Vector3.forward * 3f) + (Vector3.up * 0.3f), out ray))
         {
-            print(ray.collider);
-
+            print("Hi");
+            var reactToMeow  = ray.collider.GetComponent<ReactToMeow>();
+            if (reactToMeow)
+            {
+                reactToMeow.MeowReact(this.gameObject);
+            }
         }
         else
         {
