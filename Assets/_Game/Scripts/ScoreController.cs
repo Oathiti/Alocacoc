@@ -30,7 +30,7 @@ public class ScoreController : MonoBehaviour
 
         topScore.Add(score);
         topScore.Sort();
-        topScore.Reverse();
+        SaveScore();
     }
 
     void LoadScore()
@@ -38,6 +38,14 @@ public class ScoreController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             topScore.Add(PlayerPrefs.GetFloat("Rank" + i, 0));
+        }
+    }
+
+    void SaveScore()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            PlayerPrefs.SetFloat("Rank" + i,topScore[i]);
         }
     }
 
