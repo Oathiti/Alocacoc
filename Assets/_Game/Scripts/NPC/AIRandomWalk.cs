@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AIRandomWalk : NPCAction
+public class AIRandomWalk : MonoBehaviour
 {
 
     public Vector3 desiredPosition;
@@ -17,21 +17,10 @@ public class AIRandomWalk : NPCAction
 
     public int pattern;
 
-    private Vector3 minRandomRange = new Vector3(-48, 0, -48);
-    private Vector3 maxRandomRange = new Vector3(48, 0, 48);
+    private Vector3 minRandomRange = new Vector3(-4, 0, 9);
+    private Vector3 maxRandomRange = new Vector3(28, 0, 39);
 
     private const float REACH_DISTANCE = 1.0f;
-
-
-    public override void StartAction()
-    {
-        RandomPosition();
-    }
-
-    public override void EndAction()
-    {
-
-    }
 
     void Awake()
     {
@@ -43,7 +32,7 @@ public class AIRandomWalk : NPCAction
 
     void Start()
     {
-        StartAction();
+         RandomPosition();
     }
 
     void Update()
