@@ -88,13 +88,11 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
-            animate.Play("Jump");
+            animate.Play("jump_up");
         }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
-        //print(cSpeed.magnitude);
         animate.SetFloat("speed", cSpeed.magnitude);
-        animate.SetFloat("jump", playerVelocity.y > 0 ? 0 : 1);
     }
     private void FixedUpdate()
     {

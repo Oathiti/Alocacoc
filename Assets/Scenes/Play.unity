@@ -24418,11 +24418,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 1512293792}
-  cinemachineFreeLook: {fileID: 0}
+  cinemachineFreeLook: {fileID: 830002233}
   animate: {fileID: 1512293794}
   spdWalk: 0.5
   spdRun: 5
   spdRotation: 0.1
+  playerVelocity: {x: 0, y: 0, z: 0}
+  stay: 0
+  targetIdle: 0
 --- !u!95 &1512293794
 Animator:
   serializedVersion: 3
@@ -26930,7 +26933,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718065330}
-  m_LocalRotation: {x: 0.09488482, y: -0.000000017479335, z: 0.0000000016660403, w: 0.9954883}
+  m_LocalRotation: {x: 0.09488483, y: -0.000000018011734, z: 0.000000001716786, w: 0.9954883}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
