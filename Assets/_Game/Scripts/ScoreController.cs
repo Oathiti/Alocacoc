@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
 {
-    public Text scoreText;
+    public Text myScoreText;
+    public List<Text> scoreText;
 
     public float score;
+
+    public List<float> topScore;
+
     bool onCount;
     void Start()
     {
@@ -21,13 +25,31 @@ public class ScoreController : MonoBehaviour
 
     public void EndScore()
     {
+        LoadScore();
         onCount = false;
+
+        topScore.Add(score);
+        topScore.Sort();
+        topScore.Reverse();
+    }
+
+    void LoadScore()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            topScore.Add(PlayerPrefs.GetFloat("Rank" + i, 0));
+        }
     }
 
     public void ShowScore()
     {
         EndScore();
-        scoreText.text = score.ToString();
+
+        for (int i = 0; i < scoreText.Count; i++)
+        {
+            scoreText[i].text = topScore[i].ToString("F2");
+        }
+        myScoreText.text = score.ToString("F2");
     }
 
     IEnumerator CountScore()
