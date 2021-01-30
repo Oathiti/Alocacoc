@@ -109,7 +109,6 @@ public class Movement : MonoBehaviour
         stay = 0;
         coroutineAnima = null;
     }
-
     public void Scare()
     {
         cinemachineFreeLook.m_XAxis.Value += 180;

@@ -22,4 +22,8 @@ public class CallInteract : MonoBehaviour
             currentInteract?.Interact();
         }
     }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * Vector3.forward*3f));
+    }
 }
