@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class ActionPatrol : MonoBehaviour
+public class ActionPatrol : NPCAction
 {
 
     public PatrolPath patrolPath;
@@ -12,6 +12,18 @@ public class ActionPatrol : MonoBehaviour
     public NavMeshAgent navMeshAgent;
 
     private const float REACH_DISTANCE = 1.0f;
+
+    public override void StartAction()
+    {
+        navMeshAgent.isStopped = false;
+        isRunning = true;
+    }
+
+    public override void EndAction()
+    {
+        isRunning = false;
+        currentPoint = null;
+    }
 
     void Awake()
     {
@@ -23,6 +35,8 @@ public class ActionPatrol : MonoBehaviour
 
     void Update()
     {
+        if (!isRunning) return;
+
         WalkOnPath();   
     }
 
@@ -39,8 +53,7 @@ public class ActionPatrol : MonoBehaviour
         {
             FindNearestPoint();
             return;
-        }
-
+        }        
 
         float distanceToPoint = (transform.position - currentPoint.transform.position).magnitude;
         if (distanceToPoint <= REACH_DISTANCE)
