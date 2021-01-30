@@ -98,24 +98,6 @@ public class Movement : MonoBehaviour
     {
         animate.SetFloat("idle", Mathf.Lerp(animate.GetFloat("idle"), targetIdle, 0.05f));
     }
-    float pushPower = 1.0f;
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody body = hit.collider.attachedRigidbody;
-
-        if (body == null || body.isKinematic)
-        {
-            return;
-        }
-
-        if (hit.moveDirection.y < -0.3)
-        {
-            return;
-        }
-        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-
-        body.AddForceAtPosition(pushDir * pushPower, transform.position);
-    }
     IEnumerator WaitAnimation()
     {
 
