@@ -8,13 +8,17 @@ public class StartGame : MonoBehaviour
     public GameObject catCamera;
 
     public GameObject fadeIn;
+    
+    public GameObject mainMenu;
 
     public string playScene;
+
 
     public void Play()
     {
         catCamera.SetActive(true);
         fadeIn.SetActive(true);
+        mainMenu.SetActive(false);
         StartCoroutine("GoToPlayScene");
     }
 
