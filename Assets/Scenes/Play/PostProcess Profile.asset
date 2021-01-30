@@ -15,16 +15,16 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   type:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 8
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.33
     min: 0
     max: 1
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 0.29
     min: 0
     max: 1
   texture:
@@ -440,3 +440,4 @@ MonoBehaviour:
   - {fileID: -311996333346666248}
   - {fileID: -5026907110082502379}
   - {fileID: -3390600556898913975}
+  - {fileID: -5963205456359332349}
