@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public CharacterController characterController;
+    public Rigidbody rigi;
     public Animator animate;
 
     public float spdWalk = 6f;
@@ -14,7 +15,7 @@ public class Movement : MonoBehaviour
     float cVelocity = 0.1f;
 
     const float jumpHeight = 1.0f;
-    const float groundDistance = 0.01f;
+    const float groundDistance = 0.02f;
 
     [Space]
     [SerializeField]
@@ -26,37 +27,41 @@ public class Movement : MonoBehaviour
     [SerializeField]
     bool isGrounded;
     float stay;
+    float targetAngle;
 
     void Update()
     {
-        isGrounded = Physics.CheckBox(transform.position, Vector3.one * groundDistance);
+        isGrounded = Physics.CheckBox(transform.position, Vector3.one * groundDistance, Quaternion.identity, layerMaskGround) || characterController.isGrounded;
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-        if (direction.magnitude > 0)
+
+        if (direction.z > 0 && direction.x == 0)
         {
-            float angle = 0;
-
-            if (direction.z > 0 && direction.x == 10)
-            {
-                angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, Camera.main.transform.eulerAngles.y, ref cVelocity, spdRotation);
-
-            }
-            else
-            {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-                angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref cVelocity, spdRotation);
-            }
-            direction = Camera.main.transform.rotation * direction;
-            direction.y = 0;
-            transform.rotation = Quaternion.Euler(0, angle, 0);
-            direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
+            targetAngle = Camera.main.transform.eulerAngles.y;
 
         }
         else
         {
+            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        }
+
+        if (direction.magnitude > 0)
+        {
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref cVelocity, Input.GetKey(KeyCode.LeftShift) ? spdRotation : spdRotation * 2);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            direction = Camera.main.transform.rotation * direction;
+            direction.y = 0;
+            direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
+            //cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > direction.magnitude ? .01f : .05f);
+        }
+        else
+        {
+            //cSpeed = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.Lerp(cSpeed, Vector3.zero, spdWalk > direction.magnitude ? .01f : .05f);
             stay += Time.deltaTime;
         }
-        cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > direction.magnitude ? .01f : .05f);
+        cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > cSpeed.magnitude ? .02f : .05f);
+
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -67,7 +72,7 @@ public class Movement : MonoBehaviour
         }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
-        print(cSpeed.magnitude);
+        //print(cSpeed.magnitude);
         animate.SetFloat("speed", cSpeed.magnitude);
         //animate.SetFloat("idle", stay % (stay < 11 ? 10 : 60));
     }
