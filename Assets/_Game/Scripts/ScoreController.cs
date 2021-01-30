@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
 {
+    public Text scoreText;
+
     public float score;
     bool onCount;
     void Start()
@@ -19,6 +22,12 @@ public class ScoreController : MonoBehaviour
     public void EndScore()
     {
         onCount = false;
+    }
+
+    public void ShowScore()
+    {
+        EndScore();
+        scoreText.text = score.ToString();
     }
 
     IEnumerator CountScore()
