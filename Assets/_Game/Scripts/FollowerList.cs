@@ -4,11 +4,11 @@ using UnityEngine;
 public class FollowerList : MonoBehaviour
 {
 
-    public List<GameObject> follower = new List<GameObject>();
+    public List<GameObject> list = new List<GameObject>();
 
     public void AddFollower(GameObject newFollower)
     {
-        follower.Add(newFollower);
+        list.Add(newFollower);
     }
 
 }

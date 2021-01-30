@@ -7,6 +7,8 @@ public class NPCLoveCat : ReactToMeow
 
     public AIFollowTarget followTarget;
 
+    private bool isReacted = false;
+
     void Awake()
     {
         if (randomWalk == null)
@@ -22,16 +24,19 @@ public class NPCLoveCat : ReactToMeow
 
     public override void MeowReact(GameObject invoker)
     {  
+        if (isReacted) return;
+        
         randomWalk.enabled = false;
         followTarget.enabled = true;
+        isReacted = true;
         
         var followerList = invoker.GetComponent<FollowerList>();
 
-        if (followerList.follower != null && followerList.follower.Count > 0)
+        if (followerList.list == null || followerList.list.Count <= 0)
         {
-            followTarget.target = followerList.follower[followerList.follower.Count - 1];
-        } else {
             followTarget.target = invoker;
+        } else {
+            followTarget.target = followerList.list[followerList.list.Count - 1];
         }
 
         followerList.AddFollower(this.gameObject);
