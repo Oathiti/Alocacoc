@@ -5,11 +5,29 @@ public class PatrolPath : MonoBehaviour
 
     public Transform[] points;
 
+    void OnDrawGizmos()
+    {
+        if (points == null || points.Length <= 1) return;
+
+        Gizmos.color = Color.blue;
+
+        for(var i = 0; i <= points.Length - 1; i++)
+        {
+            int nextPoint = i + 1;
+            if (i >= points.Length - 1)
+                nextPoint = 0;
+            
+            if (points[i] == null || points[nextPoint] == null) return;
+
+            Gizmos.DrawLine(points[i].position, points[nextPoint].position);
+        }
+    }
+
     public Transform GetNextPoint(Transform currentPoint)
     {
         if (points.Length <= 0) return null;
 
-        for (int i = 0; i < points.Length - 1; i++)
+        for (int i = 0; i <= points.Length - 1; i++)
         {
             if (points[i] == currentPoint)
             {
