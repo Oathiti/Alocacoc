@@ -14,6 +14,10 @@ public class Movement : MonoBehaviour
     public float spdRotation = 0.01f;
     float cVelocity = 0.1f;
 
+    public GameObject cardboradbox;
+    public GameObject effectBox;
+    public static bool inbox;
+
     const float jumpHeight = 1.0f;
 
     [Space]
@@ -113,5 +117,16 @@ public class Movement : MonoBehaviour
     {
         cinemachineFreeLook.m_XAxis.Value += 180;
         run = 2;
+    }
+    public IEnumerator Box()
+    {
+        inbox = true;
+        cardboradbox.SetActive(true);
+        effectBox.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        effectBox.SetActive(false);
+        effectBox.SetActive(true);
+        cardboradbox.SetActive(false);
+        inbox = false;
     }
 }
