@@ -313,7 +313,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468846918}
-  m_LocalRotation: {x: 0.09488484, y: 0.000000016954797, z: -0.0000000016160447, w: 0.9954883}
+  m_LocalRotation: {x: 0.09488482, y: 0.000000017479335, z: -0.0000000016660403, w: 0.9954883}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1109,7 +1109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.07314343, y: 0.000000003432058, z: -2.517067e-10, w: 0.9973215}
+  m_LocalRotation: {x: 0.07314343, y: -0.0000000034320584, z: 2.517067e-10, w: 0.9973215}
   m_LocalPosition: {x: 0.75420314, y: -0.23177141, z: -3.6200452}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1350,7 +1350,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070069131}
-  m_LocalRotation: {x: 0.0767617, y: -0.000000004288904, z: 3.301978e-10, w: 0.9970495}
+  m_LocalRotation: {x: 0.0767617, y: 0.000000004288903, z: -3.3019773e-10, w: 0.9970495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1699,7 +1699,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613901208}
-  m_LocalRotation: {x: 0.05866115, y: 0.000000017176756, z: -0.0000000010093464, w: 0.99827796}
+  m_LocalRotation: {x: 0.05866115, y: -0.00000001717675, z: 0.000000001009346, w: 0.99827796}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5234,13 +5234,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.45
+  m_Height: 0.42
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.2
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0.0001
-  m_Center: {x: 0, y: 0.22, z: 0}
+  m_Center: {x: 0, y: 0.23, z: 0}
 --- !u!114 &8421961871090271250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5254,18 +5254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 8421961871090271249}
-  rigi: {fileID: 0}
+  cinemachineFreeLook: {fileID: 790157412}
   animate: {fileID: 1398804671640024941}
   spdWalk: 0.5
   spdRun: 5
   spdRotation: 0.1
-  layerMaskGround:
-    serializedVersion: 2
-    m_Bits: 512
-  cSpeed: {x: 0, y: 0, z: 0}
-  playerVelocity: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  isGrounded: 0
 --- !u!114 &8421961871090271251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5290,8 +5283,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0.25, z: 0.25}
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0.25, z: 0.4}
 --- !u!4 &8444159432861444711
 Transform:
   m_ObjectHideFlags: 0

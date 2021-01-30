@@ -1,64 +1,78 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     public CharacterController characterController;
-    public Rigidbody rigi;
+    public Cinemachine.CinemachineFreeLook cinemachineFreeLook;
     public Animator animate;
 
     public float spdWalk = 6f;
     public float spdRun = 10f;
     public float spdRotation = 0.01f;
-    public LayerMask layerMaskGround;
     float cVelocity = 0.1f;
 
     const float jumpHeight = 1.0f;
-    const float groundDistance = 0.02f;
 
     [Space]
-    [SerializeField]
     Vector3 cSpeed;
-    [SerializeField]
     Vector3 playerVelocity;
-    [SerializeField]
     Vector3 direction;
-    [SerializeField]
     bool isGrounded;
     float stay;
     float targetAngle;
+    float targetIdle;
+    float run;
+    Coroutine coroutineAnima;
 
     void Update()
     {
-        isGrounded = Physics.CheckBox(transform.position, Vector3.one * groundDistance, Quaternion.identity, layerMaskGround) || characterController.isGrounded;
+        isGrounded = characterController.isGrounded;
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-
-        if (direction.z > 0 && direction.x == 0)
+        if ((run -= Time.deltaTime) > 0)
         {
             targetAngle = Camera.main.transform.eulerAngles.y;
-
-        }
-        else
-        {
-            targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-        }
-
-        if (direction.magnitude > 0)
-        {
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref cVelocity, Input.GetKey(KeyCode.LeftShift) ? spdRotation : spdRotation * 2);
             transform.rotation = Quaternion.Euler(0, angle, 0);
-
+            direction = Vector3.forward * spdRun;
             direction = Camera.main.transform.rotation * direction;
             direction.y = 0;
-            direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
-            //cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > direction.magnitude ? .01f : .05f);
         }
         else
         {
-            //cSpeed = Quaternion.Euler(0, transform.eulerAngles.y, 0) * Vector3.Lerp(cSpeed, Vector3.zero, spdWalk > direction.magnitude ? .01f : .05f);
-            stay += Time.deltaTime;
+
+            if (direction.z > 0 && direction.x == 0)
+            {
+                targetAngle = Camera.main.transform.eulerAngles.y;
+
+            }
+            else
+            {
+                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            }
+
+            if (direction.magnitude > 0)
+            {
+                stay = 0;
+                targetIdle = 0;
+
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref cVelocity, Input.GetKey(KeyCode.LeftShift) ? spdRotation : spdRotation * 2);
+                transform.rotation = Quaternion.Euler(0, angle, 0);
+
+                direction = Camera.main.transform.rotation * direction;
+                direction.y = 0;
+                direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
+            }
+            else
+            {
+                if ((stay += Time.deltaTime) > 20 && coroutineAnima == null)
+                {
+                    coroutineAnima = StartCoroutine(WaitAnimation());
+                }
+            }
         }
         cSpeed = Vector3.Lerp(cSpeed, direction, spdWalk > cSpeed.magnitude ? .02f : .05f);
 
@@ -74,13 +88,8 @@ public class Movement : MonoBehaviour
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
         //print(cSpeed.magnitude);
         animate.SetFloat("speed", cSpeed.magnitude);
-        //animate.SetFloat("idle", stay % (stay < 11 ? 10 : 60));
+        animate.SetFloat("idle", Mathf.Lerp(animate.GetFloat("idle"), targetIdle, 0.01f));
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireCube(transform.position, Vector3.one * groundDistance);
-    }
-
     float pushPower = 1.0f;
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -99,5 +108,19 @@ public class Movement : MonoBehaviour
 
         body.AddForceAtPosition(pushDir * pushPower, transform.position);
     }
+    IEnumerator WaitAnimation()
+    {
+        stay = 0;
+        targetIdle = 1;
+        yield return new WaitForSeconds(4);
+        targetIdle = 0;
+        stay = 0;
+        coroutineAnima = null;
+    }
 
+    public void Scare()
+    {
+        cinemachineFreeLook.m_XAxis.Value += 180;
+        run = 2;
+    }
 }
