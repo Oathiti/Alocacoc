@@ -779,8 +779,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 86cfb6333efd39a43ad7726f0279adb2, type: 3}
-  - {fileID: -2917981178093053884, guid: 86cfb6333efd39a43ad7726f0279adb2, type: 3}
+  - {fileID: 2100000, guid: 6e87d605d54dd4e38a3ffee809cbc1d4, type: 2}
+  - {fileID: 2100000, guid: 17d288bb415c20c47a816e7345f31cbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2491,7 +2491,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 86cfb6333efd39a43ad7726f0279adb2, type: 3}
+  - {fileID: 2100000, guid: 6e87d605d54dd4e38a3ffee809cbc1d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3767,7 +3767,7 @@ GameObject:
   - component: {fileID: 8789511563162374995}
   - component: {fileID: 8789511563162374992}
   m_Layer: 0
-  m_Name: Player_Cat 1
+  m_Name: Player_Cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3803,15 +3803,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 8789511563162374992}
+  cinemachineFreeLook: {fileID: 0}
+  animate: {fileID: 0}
   spdWalk: 2
   spdRun: 5
   spdRotation: 0.1
-  layerMaskGround:
-    serializedVersion: 2
-    m_Bits: 512
-  playerVelocity: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  isGrounded: 0
 --- !u!143 &8789511563162374992
 CharacterController:
   m_ObjectHideFlags: 0

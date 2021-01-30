@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788db8a1cd89d474685f3d7f2898989a, type: 3}
   m_Name: Find Way Out
   m_EditorClassIdentifier: 
-  Description: 
+  description: 
   finish: 0
   subTasks: []
