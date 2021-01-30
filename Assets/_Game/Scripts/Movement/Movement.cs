@@ -18,11 +18,14 @@ public class Movement : MonoBehaviour
 
     [Space]
     Vector3 cSpeed;
+    [SerializeField]
     Vector3 playerVelocity;
     Vector3 direction;
     bool isGrounded;
-    float stay;
     float targetAngle;
+    [SerializeField]
+    float stay;
+    [SerializeField]
     float targetIdle;
     float run;
     Coroutine coroutineAnima;
@@ -30,6 +33,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         isGrounded = characterController.isGrounded;
+        animate.SetBool("isGround", isGrounded);
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         if ((run -= Time.deltaTime) > 0)
@@ -70,6 +74,7 @@ public class Movement : MonoBehaviour
             {
                 if ((stay += Time.deltaTime) > 20 && coroutineAnima == null)
                 {
+                    stay = 0;
                     coroutineAnima = StartCoroutine(WaitAnimation());
                 }
             }
@@ -83,12 +88,17 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+            animate.Play("Jump");
         }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         characterController.Move((cSpeed + playerVelocity) * Time.deltaTime);
         //print(cSpeed.magnitude);
         animate.SetFloat("speed", cSpeed.magnitude);
-        animate.SetFloat("idle", Mathf.Lerp(animate.GetFloat("idle"), targetIdle, 0.01f));
+        animate.SetFloat("jump", playerVelocity.y > 0 ? 0 : 1);
+    }
+    private void FixedUpdate()
+    {
+        animate.SetFloat("idle", Mathf.Lerp(animate.GetFloat("idle"), targetIdle, 0.05f));
     }
     float pushPower = 1.0f;
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -110,9 +120,11 @@ public class Movement : MonoBehaviour
     }
     IEnumerator WaitAnimation()
     {
+
+        animate.Play("Move", -1, 0);
         stay = 0;
-        targetIdle = 1;
-        yield return new WaitForSeconds(4);
+        targetIdle = .5f;
+        yield return new WaitForSeconds(5f);
         targetIdle = 0;
         stay = 0;
         coroutineAnima = null;
