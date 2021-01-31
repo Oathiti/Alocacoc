@@ -10,12 +10,12 @@ public class PauseGame : MonoBehaviour
     bool isPause;
     public void PauseResume()
     {
-        Cursor.lockState = isPause ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPause;
 
 
         uiGame.SetActive(isPause);
         Time.timeScale = (isPause = !isPause) ? 0 : 1;
+        Cursor.lockState = isPause ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isPause;
         canvasGroup.blocksRaycasts = isPause;
         canvasGroup.alpha = isPause ? 1 : 0;
     }
