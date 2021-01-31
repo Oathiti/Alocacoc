@@ -16,7 +16,7 @@ public class NPCSignal : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 60f) StartCoroutine(SpawnSmoke());
+        if (timer > 10f) StartCoroutine(SpawnSmoke());
     }
 
     IEnumerator SpawnSmoke()

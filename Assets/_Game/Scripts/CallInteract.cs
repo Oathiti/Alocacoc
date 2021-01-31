@@ -44,7 +44,9 @@ public class CallInteract : MonoBehaviour
             if (reactToMeow)
             {
                 reactToMeow.MeowReact(this.gameObject);
+                reactToMeow.GetComponent<NPCSignal>().enabled = false;
             }
+            
         }
         else
         {

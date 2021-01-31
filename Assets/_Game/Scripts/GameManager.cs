@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameUtility;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public AudioClip playBGM;
     public AudioClip scoreBGM;
 
+    public Text ppl;
+
     void Start()
     {
 
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         followerList.onCount = (c) =>
           {
+              ppl.text = c + "/9";
               if (c == goodGuy.Length)
                   ShowScore();
           };
