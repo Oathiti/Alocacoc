@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     public float spdRotation = 0.01f;
     float cVelocity = 0.1f;
 
+    public AudioClip scareSound;
+
     public GameObject cardboradbox;
     public GameObject effectBox;
     public static bool inbox;
@@ -115,6 +117,8 @@ public class Movement : MonoBehaviour
     }
     public void Scare()
     {
+        GetComponent<AudioSource>().PlayOneShot(scareSound);
+
         cinemachineFreeLook.m_XAxis.Value += 180;
         run = 2;
     }

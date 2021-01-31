@@ -18,8 +18,18 @@ public class GameManager : MonoBehaviour
     public FollowerList followerList;
     public UnityEvent finishGame;
 
+    public AudioClip playBGM;
+    public AudioClip scoreBGM;
+
     void Start()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        GetComponent<AudioSource>().clip = playBGM;
+        GetComponent<AudioSource>().Play();
+
         followerList.onCount = (c) =>
           {
               if (c == goodGuy.Length)
@@ -53,5 +63,7 @@ public class GameManager : MonoBehaviour
     void ShowScore()
     {
         finishGame?.Invoke();
+        GetComponent<AudioSource>().clip = scoreBGM;
+        GetComponent<AudioSource>().Play();
     }
 }
