@@ -17,8 +17,8 @@ public class AIRandomWalk : MonoBehaviour
 
     public int pattern;
 
-    private Vector3 minRandomRange = new Vector3(-4, 0, 9);
-    private Vector3 maxRandomRange = new Vector3(28, 0, 39);
+    private Vector3 minRandomRange = new Vector3(-64.428f, 0, -19.379f);
+    private Vector3 maxRandomRange = new Vector3(-2.8f, 0, 44.4f);
 
     private const float REACH_DISTANCE = 1.0f;
 
