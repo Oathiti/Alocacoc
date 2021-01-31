@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
 {
-    public Text myScoreText;
     public List<Text> scoreText;
+    public List<Text> nameText;
 
     public static float score = 0;
+    public static string name = "";
 
     public List<float> topScore;
+    public List<string> topName;
 
     bool onCount;
     void Start()
@@ -29,23 +31,27 @@ public class ScoreController : MonoBehaviour
         onCount = false;
 
         topScore.Add(score);
+        topName.Add(name);
         topScore.Sort();
+        topName.Sort();
         SaveScore();
     }
 
     void LoadScore()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            topScore.Add(PlayerPrefs.GetFloat("Rank" + i, 0));
+            topScore.Add(PlayerPrefs.GetFloat("RankScore" + i, 0));
+            topName.Add(PlayerPrefs.GetString("RankName" + i, ""));
         }
     }
 
     void SaveScore()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
-            PlayerPrefs.SetFloat("Rank" + i,topScore[i]);
+            PlayerPrefs.SetFloat("RankScore" + i,topScore[i]);
+            PlayerPrefs.SetString("RankName" + i, topName[i]);
         }
     }
 
@@ -56,8 +62,8 @@ public class ScoreController : MonoBehaviour
         for (int i = 0; i < scoreText.Count; i++)
         {
             scoreText[i].text = topScore[i].ToString("F2");
+            nameText[i].text = topName[i];
         }
-        myScoreText.text = score.ToString("F2");
     }
 
     IEnumerator CountScore()

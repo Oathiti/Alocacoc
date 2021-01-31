@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
+    public InputField nameInput;
+    
     public GameObject loadingScreen;
 
     public GameObject catCamera;
@@ -28,6 +31,7 @@ public class StartGame : MonoBehaviour
         if (loadingScreen)
             loadingScreen.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+        ScoreController.name = nameInput.text;
         SceneManager.LoadSceneAsync(playScene);
     }
 }
