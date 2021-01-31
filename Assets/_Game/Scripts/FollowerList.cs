@@ -13,4 +13,6 @@ public class FollowerList : MonoBehaviour
         onCount?.Invoke(list.Count);
     }
 
+
+
 }
