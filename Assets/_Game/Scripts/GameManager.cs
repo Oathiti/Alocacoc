@@ -28,11 +28,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < goodGuy.Length; i++)
         {
-            Instantiate(goodGuy[i], pointSpawn[i].position, goodGuy[i].transform.rotation);
+            Instantiate(goodGuy[i], pointSpawn[i].position, goodGuy[i].transform.rotation).name = "NPC_Good";
         }
-        for (int i = 0; i < goodGuy.Length; i++)
+        for (int i = 0; i < minimumSpawn; i++)
         {
-            Instantiate(badGuy[Random.Range(0, badGuy.Length)], pointSpawn[i + goodGuy.Length].position, goodGuy[i].transform.rotation);
+            int ii;
+            Instantiate(badGuy[ii = Random.Range(0, badGuy.Length)], pointSpawn[i + goodGuy.Length].position, badGuy[ii].transform.rotation).name = "NPC_Bad";
             badGuyCount++;
         }
         StartCoroutine(SpawnBadGuy());
