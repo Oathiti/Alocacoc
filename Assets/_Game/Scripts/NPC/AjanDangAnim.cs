@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class AIAnim : MonoBehaviour
+
+public class AjanDangAnim : MonoBehaviour
 {
     Animator anim;
     bool idleAnimChoose;
-    public bool encounterCat;
+    float timer;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         idleAnimChoose = (Random.value > 0.5f);
-        encounterCat = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (encounterCat)
+        timer += Time.deltaTime;
+        if (timer > 6f)
         {
-            anim.Play("CatEn");
+            anim.Play("krasharkjai");
+            StartCoroutine(DelayTime());
         }
         else
         {
@@ -36,5 +38,11 @@ public class AIAnim : MonoBehaviour
                 anim.Play("Walk");
             }
         }
+    }
+
+    IEnumerator DelayTime()
+    {
+        yield return new WaitForSeconds(2f);
+        timer = 0;
     }
 }

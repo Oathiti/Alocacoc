@@ -9,6 +9,9 @@ public class FollowerList : MonoBehaviour
     public void AddFollower(GameObject newFollower)
     {
         list.Add(newFollower);
+
     }
+
+
 
 }

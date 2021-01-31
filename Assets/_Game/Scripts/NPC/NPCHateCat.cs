@@ -14,7 +14,7 @@ public class NPCHateCat : ReactToMeow
     IEnumerator ScareCat()
     {
         GetComponent<AIAnim>().encounterCat = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         GetComponent<AIAnim>().encounterCat = false;
     }
 
