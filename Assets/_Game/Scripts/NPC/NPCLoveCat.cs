@@ -41,6 +41,4 @@ public class NPCLoveCat : ReactToMeow
 
         followerList.AddFollower(this.gameObject);
     }
-
-
 }
