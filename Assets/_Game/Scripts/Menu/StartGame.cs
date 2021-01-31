@@ -18,6 +18,13 @@ public class StartGame : MonoBehaviour
     public string playScene;
 
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+    }
+
     public void Play()
     {
         catCamera.SetActive(true);
