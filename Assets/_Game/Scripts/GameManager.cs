@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameUtility;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     int badGuyCount = 0;
 
     public FollowerList followerList;
+    public UnityEvent finishGame;
 
     void Start()
     {
@@ -50,6 +52,6 @@ public class GameManager : MonoBehaviour
 
     void ShowScore()
     {
-
+        finishGame?.Invoke();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
@@ -11,9 +13,8 @@ public class ScoreController : MonoBehaviour
     public static float score = 0;
     public static string name = "";
 
-    public List<float> topScore;
-    public List<string> topName;
-
+    public List<(float score, string name)> topScore = new List<(float score, string name)>();
+    public GameObject go;
     bool onCount;
     void Start()
     {
@@ -27,22 +28,15 @@ public class ScoreController : MonoBehaviour
 
     public void EndScore()
     {
-        LoadScore();
-        onCount = false;
 
-        topScore.Add(score);
-        topName.Add(name);
-        topScore.Sort();
-        topName.Sort();
-        SaveScore();
     }
 
     void LoadScore()
     {
         for (int i = 0; i < 4; i++)
         {
-            topScore.Add(PlayerPrefs.GetFloat("RankScore" + i, 0));
-            topName.Add(PlayerPrefs.GetString("RankName" + i, ""));
+            topScore.Add((PlayerPrefs.GetFloat("RankScore" + i, 0), PlayerPrefs.GetString("RankName" + i, "")));
+            //topName.Add();
         }
     }
 
@@ -50,19 +44,25 @@ public class ScoreController : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            PlayerPrefs.SetFloat("RankScore" + i,topScore[i]);
-            PlayerPrefs.SetString("RankName" + i, topName[i]);
+            PlayerPrefs.SetFloat("RankScore" + i, topScore[i].score);
+            PlayerPrefs.SetString("RankName" + i, topScore[i].name);
         }
     }
 
     public void ShowScore()
     {
-        EndScore();
+        LoadScore();
+        onCount = false;
 
+        topScore.Add((score, name));
+        //topScore = topScore.OrderBy(o => o.score > 0f).ToList();
+        var select = topScore.OrderBy(o => o.score).Where(s => s.score > 0).ToArray();
+        SaveScore();
+        go.SetActive(true);
         for (int i = 0; i < scoreText.Count; i++)
         {
-            scoreText[i].text = topScore[i].ToString("F2");
-            nameText[i].text = topName[i];
+            scoreText[i].text = (select.Length > i ? select[i].score : 0).ToString("0.00");
+            nameText[i].text = topScore[i].name;
         }
     }
 
@@ -73,6 +73,13 @@ public class ScoreController : MonoBehaviour
         {
             score += Time.deltaTime;
             yield return null;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

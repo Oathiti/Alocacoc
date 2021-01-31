@@ -15,7 +15,7 @@ public class UIMouseInput : MonoBehaviour
     void Update()
     {
         float f;
-        print(Input.GetAxisRaw("Mouse X") + "|" + Input.GetAxisRaw("Mouse Y"));
+        //print(Input.GetAxisRaw("Mouse X") + "|" + Input.GetAxisRaw("Mouse Y"));
         f = Input.GetAxisRaw("Mouse X");
         dL.sprite = f < -0.1f ? l1 : l0;
         dR.sprite = f > 0.1f ? r1 : r0;
