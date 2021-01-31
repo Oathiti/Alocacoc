@@ -15,15 +15,12 @@ public class UIMouseInput : MonoBehaviour
     void Update()
     {
         float f;
-        if ((f = Input.GetAxisRaw("MOUSE X")) > 0)
-        {
-            dL.sprite = f < 0 ? l1 : l0;
-            dR.sprite = f < 0 ? r1 : r0;
-        }
-        if ((f = Input.GetAxisRaw("MOUSE Y")) > 0)
-        {
-            dU.sprite = f < 0 ? u1 : u0;
-            dD.sprite = f < 0 ? d1 : d0;
-        }
+        print(Input.GetAxisRaw("Mouse X") + "|" + Input.GetAxisRaw("Mouse Y"));
+        f = Input.GetAxisRaw("Mouse X");
+        dL.sprite = f < -0.1f ? l1 : l0;
+        dR.sprite = f > 0.1f ? r1 : r0;
+        f = Input.GetAxisRaw("Mouse Y");
+        dU.sprite = f > 0.1f ? u1 : u0;
+        dD.sprite = f < -0.1f ? d1 : d0;
     }
 }
