@@ -26,12 +26,8 @@ public class StartGame : MonoBehaviour
     protected IEnumerator GoToPlayScene()
     {
         yield return new WaitForSeconds(1.5f);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(playScene);
-
-        loadingScreen.SetActive(true);
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
+        SceneManager.LoadSceneAsync(playScene);
+        if (loadingScreen)
+            loadingScreen.SetActive(true);
     }
 }
