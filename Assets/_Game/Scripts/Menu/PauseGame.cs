@@ -10,6 +10,10 @@ public class PauseGame : MonoBehaviour
     bool isPause;
     public void PauseResume()
     {
+        Cursor.lockState = isPause ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isPause;
+
+
         uiGame.SetActive(isPause);
         Time.timeScale = (isPause = !isPause) ? 0 : 1;
         canvasGroup.blocksRaycasts = isPause;
@@ -19,6 +23,7 @@ public class PauseGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
             PauseResume();
         }
     }
