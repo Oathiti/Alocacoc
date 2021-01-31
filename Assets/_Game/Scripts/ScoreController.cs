@@ -8,7 +8,7 @@ public class ScoreController : MonoBehaviour
     public Text myScoreText;
     public List<Text> scoreText;
 
-    public float score;
+    public static float score = 0;
 
     public List<float> topScore;
 

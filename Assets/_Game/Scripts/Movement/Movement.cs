@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
 
                 direction = Camera.main.transform.rotation * direction;
                 direction.y = 0;
-                direction *= Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
+                direction *= !Input.GetKey(KeyCode.LeftShift) ? spdRun : spdWalk;
             }
             else
             {
